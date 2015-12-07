@@ -2,7 +2,9 @@
 @import "bootstrap";
 
 $light-grey: #777;
-
+$grey-medium-light: #eaeaea;
+$grey: #555;
+$grey-darker: #222;
 
 /*universal */
 body {
@@ -65,12 +67,12 @@ p {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid $grey-medium-light;
   color: $light-grey;
   a {
-    color: #555;
+    color: $grey;
     &:hover {
-      color: #222;
+      color: $grey-darker;
     }
   }
   small {
