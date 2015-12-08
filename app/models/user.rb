@@ -4,5 +4,5 @@ class User < ActiveRecord::Base
 
   validates(:email, {presence:true})
   validates :name, length: {maximum:50}
-  validates :email, length: {maximum:256}
+  validates :email, length: {maximum:255}
 end
