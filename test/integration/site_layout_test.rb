@@ -1,5 +1,7 @@
 require 'test_helper'
+require 'helpers/application_helper_test'
 class SiteLayoutTest < ActionDispatch::IntegrationTest
+  # include ApplicationHelperTest
   test "layout links" do
     get root_path
     assert_template 'static_pages/home'
