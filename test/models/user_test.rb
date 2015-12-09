@@ -48,4 +48,17 @@ foo@bar_baz.com foo@bar+baz.com]
       assert_not @user.valid?, "#{invalid_address.inspect} should be invalid"
     end
   end
+
+  test "password has minimum length" do
+    @user.password = "a"*5
+    @user.password_confirmation = @user.password
+    assert_not @user.valid?
+  end
+  test "password not blank" do
+    @user.password = " "*6
+    @user.password_confirmation = @user.password
+    assert_not @user.valid?
+  end
+
+
 end
