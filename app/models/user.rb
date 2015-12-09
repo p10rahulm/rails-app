@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   validates :email, format:{with: VALID_EMAIL_REGEX }
 
   has_secure_password
+  validates :password, length: {minimum:6}
+  validates :password_confirmation, length: {minimum:6}
+  validates :password, {presence:true}
+  validates :password_confirmation, {presence:true}
 end
