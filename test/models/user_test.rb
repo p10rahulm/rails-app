@@ -67,4 +67,11 @@ foo@bar_baz.com foo@bar+baz.com]
 
   end
 
+  test "email addresses should be saved as lower case" do
+    some_email = "mYname@Gmail.COM"
+    @user.email = some_email
+    @user.save
+    assert_equal some_email.downcase, @user.reload.email
+
+  end
 end
