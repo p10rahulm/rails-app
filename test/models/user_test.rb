@@ -59,6 +59,12 @@ foo@bar_baz.com foo@bar+baz.com]
     @user.password_confirmation = @user.password
     assert_not @user.valid?
   end
+  test "email should be unique" do
+    @duplicateuser = @user.duplicate
+    @duplicateuser.email = @user.email.upcase
+    @user.save
+    assert_not @duplicateuser.valid?
 
+  end
 
 end
