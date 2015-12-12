@@ -12,7 +12,15 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_template 'users/new'
     assert_select 'div#error_explanation'
     assert_select 'div.field_with_errors'
+    assert_select 'div#error_explanation > ul > li:nth-child(1)', "Name can't be blank"
+    assert_select 'div#error_explanation > ul > li:nth-child(2)', "Email is invalid"
+    assert_select 'div#error_explanation > ul > li:nth-child(3)', "Password confirmation doesn't match Password"
+    assert_select 'div#error_explanation > ul > li:nth-child(4)',
+                  "Password confirmation is too short (minimum is 6 characters)"
+    assert_select 'div#error_explanation > ul > li:nth-child(5)', "Password is too short (minimum is 6 characters)"
+
   end
+
   test "valid signup information" do
     get signup_path
     assert_difference 'User.count', 1 do
@@ -22,6 +30,12 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                             password_confirmation: "password" }
     end
     assert_template 'users/show'
+    assert_not flash.nil?
+    flashassertion = false
+    flash.each do |messagetype, message|
+       flashassertion = true if messagetype == "success" && message == "Welcome to the Sample App!"
+    end
+    assert flashassertion
 
   end
 
