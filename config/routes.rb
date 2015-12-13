@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
   get 'sessions/new'
 
   get 'users/new'
@@ -8,14 +8,13 @@ Rails.application.routes.draw do
   get 'about' => 'static_pages#about'
   get 'contact' => 'static_pages#contact'
   get 'signup' => 'users#new'
+  get 'login' => 'sessions#new'
 
   resources :users
 
 end
 #
 # Rails.application.routes.draw do
-  get 'sessions/new'
-
 #   get 'static_pages/home'
 #
 #   get 'static_pages/help'
