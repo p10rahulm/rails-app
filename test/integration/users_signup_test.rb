@@ -36,7 +36,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
        flashassertion = true if messagetype == "success" && message == "Welcome to the Sample App!"
     end
     assert flashassertion
-
+    assert is_logged_in?
   end
 
 end
