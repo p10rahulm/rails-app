@@ -4,3 +4,8 @@ rahul:
   name: Rahul Madhavan
   email: rahul@gmail.com
   password_digest: <%= User.digest('password') %>
+
+hombalappa:
+name: Hombalappa Garu
+email: homb@lappa.in
+password_digest: <%= User.digest('password') %>
