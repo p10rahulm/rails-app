@@ -10,7 +10,7 @@ hombalappa:
   name: Hombalappa Garu
   email: homb@lappa.in
   password_digest: <%= User.digest('password') %>
-  admin: true
+  admin: false
 
 lana:
   name: Lana Kane
