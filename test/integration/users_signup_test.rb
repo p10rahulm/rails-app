@@ -68,7 +68,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_not flash.nil?
     flashassertion = false
     flash.each do |messagetype, message|
-       flashassertion = true if messagetype == "success" && message == "Welcome to the Sample App!"
+       flashassertion = true if messagetype == "success" && message == "Account activated! Welcome to the Sample App!"
     end
     assert flashassertion
 
