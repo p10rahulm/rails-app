@@ -1,2 +1,2 @@
-access_key_id: <%= ENV['AKIAJ4IUIOTMD556KNHA']} %>
-secret_access_key: <%= ENV['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'] %>
+AWS_ACCESS_KEY_ID: <%= ENV['AKIAJ4IUIOTMD556KNHA']} %>
+AWS_SECRET_ACCESS_KEY: <%= ENV['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'] %>
