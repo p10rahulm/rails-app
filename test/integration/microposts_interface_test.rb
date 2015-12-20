@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   def setup
-    @user=users(:rahul)
+    @user = users(:rahul)
   end
   test "micropost interface" do
     log_in_as(@user)

@@ -3,7 +3,7 @@ require 'test_helper'
 class MicropostsControllerTest < ActionController::TestCase
   def setup
     @micropost = microposts(:orange)
-    user1 = users(:rahul)
+    @user1 = users(:rahul)
   end
 
   test "should redirect create when not logged in" do
@@ -20,7 +20,7 @@ class MicropostsControllerTest < ActionController::TestCase
     assert_redirected_to login_url
   end
   test "should redirect destroy for wrong micropost" do
-    log_in_as(:rahul)
+    log_in_as(@user1)
     micropost = microposts(:ants)
     assert_no_difference 'Micropost.count' do
       delete :destroy, id: micropost
