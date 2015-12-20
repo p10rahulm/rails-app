@@ -73,4 +73,31 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert flashassertion
 
   end
+
+  test "ensure non-activated users not showing on index page and profile page" do
+
+    get signup_path
+    assert_difference 'User.count', 1 do
+      post users_path, user: { name: "Example User",
+                               email: "user@example.com",
+                               password: "password",
+                               password_confirmation: "password" }
+    end
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    user = assigns(:user)
+    assert_not user.activated?
+    log_in_as(user)
+    assert_not is_logged_in?
+    other_user = users(:rahul)
+    log_in_as(other_user)
+    get users_path
+    assert_no_match response.body, user.name
+    get users_path, page:2
+    assert_no_match response.body, user.name
+    get user_path(user)
+    assert_redirected_to root_url
+    delete logout_path
+  end
+
+
 end
