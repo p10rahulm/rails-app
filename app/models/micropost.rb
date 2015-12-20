@@ -14,3 +14,5 @@ class Micropost < ActiveRecord::Base
       errors.add(:picture, "should be less than 5MB")
     end
   end
+end
+
