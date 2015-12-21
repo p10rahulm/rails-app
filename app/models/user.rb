@@ -90,7 +90,14 @@ class User < ActiveRecord::Base
     # Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
     # Micropost.where("user_id IN (?) OR user_id = ?", self.following_ids, id)
     # Micropost.where("user_id IN (?) OR user_id = ?", self.following.map(&:id), id)
-    Micropost.where("user_id IN (?) OR user_id = ?", self.following.map(&:id).map(&:to_s), id)
+    # Micropost.where("user_id IN (?) OR user_id = ?", self.following.map(&:id).map(&:to_s), id)
+    # ON TO A SLIGHTLY MORE COMPLEX SYSTEM
+    # Micropost.where("user_id IN (:following_ids) OR user_id = :user_id",
+    #                     following_ids: following_ids, user_id: id)
+    #ON TO AN EVEN MORE COMPLEX DESIGN
+    following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
+
 
   end
 
