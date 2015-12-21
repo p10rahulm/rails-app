@@ -24,6 +24,7 @@ class FollowingTest < ActionDispatch::IntegrationTest
     end
   end
 
+
   test "should follow a user the standard way" do
     assert_difference '@user.following.count', 1 do
       post relationships_path, followed_id: @other.id
@@ -51,4 +52,13 @@ class FollowingTest < ActionDispatch::IntegrationTest
       xhr :delete, relationship_path(relationship)
     end
   end
+
+  test "feed on Home page" do
+    get root_path
+    @user.feed.paginate(page: 1).each do |micropost|
+      assert_match CGI.escapeHTML(micropost.content), response.body
+      # assert_match micropost.content, response.body
+    end
+  end
+
 end
