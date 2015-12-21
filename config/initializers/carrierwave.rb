@@ -10,7 +10,7 @@ if Rails.env.production?
       :region                 => "ap-southeast-1"
     }
     config.fog_directory = "rubyjolapp"
-    config.fog_public     = false                                   # optional, defaults to true
+    # config.fog_public     = false                                   # optional, defaults to true
     config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
     end
 end
