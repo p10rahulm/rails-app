@@ -80,13 +80,15 @@ foo@bar_baz.com foo@bar+baz.com]
   end
 
   test "should follow and unfollow a user" do
-    michael = users(:michael)
-    archer = users(:archer)
-    assert_not michael.following?(archer)
-    michael.follow(archer)
-    assert michael.following?(archer)
-    michael.unfollow(archer)
-    assert_not michael.following?(archer)
+    rahul = users(:rahul)
+    hombalappa = users(:hombalappa)
+    assert_not rahul.following?(hombalappa)
+    rahul.follow(hombalappa)
+    assert rahul.following?(hombalappa)
+    assert hombalappa.followers.include?(rahul)
+    rahul.unfollow(hombalappa)
+    assert_not rahul.following?(hombalappa)
+    assert_not hombalappa.followers.include?(rahul)
   end
 
 end
