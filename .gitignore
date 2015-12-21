@@ -22,3 +22,5 @@
 # Ignore uploaded test images.
 /public/uploads
 /public/tmp
+
+#ignore carrierwave config files
