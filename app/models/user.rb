@@ -84,7 +84,14 @@ class User < ActiveRecord::Base
   # Defines a proto-feed.
   # See "Following users" for the full implementation.
   def feed
-    Micropost.where("user_id = ?", id)
+    # Micropost.where("user_id = ?", id)
+    # Here we have to supply list of following IDS as a csv string
+    # All of the below can be used
+    # Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
+    # Micropost.where("user_id IN (?) OR user_id = ?", self.following_ids, id)
+    # Micropost.where("user_id IN (?) OR user_id = ?", self.following.map(&:id), id)
+    Micropost.where("user_id IN (?) OR user_id = ?", self.following.map(&:id).map(&:to_s), id)
+
   end
 
   # Follows a user.

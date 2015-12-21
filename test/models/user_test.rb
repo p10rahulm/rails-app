@@ -91,4 +91,22 @@ foo@bar_baz.com foo@bar+baz.com]
     assert_not hombalappa.followers.include?(rahul)
   end
 
+  test "feed should have the right posts" do
+    rahul = users(:rahul)
+    hombalappa = users(:hombalappa)
+    lana = users(:lana)
+    # Posts from followed user
+    lana.microposts.each do |post_following|
+      assert rahul.feed.include?(post_following)
+    end
+    # Posts from self
+    rahul.microposts.each do |post_self|
+      assert rahul.feed.include?(post_self)
+    end
+    # Posts from unfollowed user
+    hombalappa.microposts.each do |post_unfollowed|
+      assert_not rahul.feed.include?(post_unfollowed)
+    end
+  end
+
 end
